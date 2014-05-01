@@ -1,4 +1,5 @@
 # coding=utf-8
+import os
 import sys
 import datetime
 
@@ -15,6 +16,8 @@ class TeamcityServiceMessages(object):
 
     def message(self, messageName, **properties):
         self.output.write("\n##teamcity[%s timestamp='%s'" % (messageName, self.now().isoformat()[:-3]))
+        properties["timestamp"] = str(datetime.datetime.now().isoformat())[:23]
+        properties["flowId"] = str(os.getpid())
         for k in sorted(properties.keys()):
             value = properties[k]
             if value is None:
