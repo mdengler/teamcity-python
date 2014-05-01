@@ -19,6 +19,9 @@ class TeamcityReport(TeamcityTestResult):
     def options(self, parser, env=os.environ):
         pass
 
+    def addOptions(self, parser, env=os.environ):
+        pass
+
     def getCtxName(self, ctx):
         if inspect.ismodule(ctx):
             name = self._lastPart(ctx.__name__)
